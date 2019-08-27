@@ -17,8 +17,8 @@ var glob = require("glob")
 
 const options = {}
 
-const lessThanOneMonthAgo = (date:any) => {
-    return moment(date).isAfter(moment().subtract(1, 'month'));
+const lessThanTwoMonthAgo = (date:any) => {
+    return moment(date).isAfter(moment().subtract(2, 'month'));
 }
 async function start () {
 
@@ -36,12 +36,12 @@ async function start () {
     }
 
     for (let aSlackUser of users) {
-        let presenceToCHeck = presence.find ( (aPresence:any)=> {
-            return (aPresence.id=aSlackUser.id)
+        let presenceToCheck = presence.find ( (aPresence:any)=> {
+            return (aPresence.id==aSlackUser.id)
         })
-        if ((presenceToCHeck == undefined) || (
-            (presenceToCHeck != undefined) && (!lessThanOneMonthAgo(presenceToCHeck.tsLastActive)))) {
-            console.log ("User "+aSlackUser.name+" looks to be inactive for more than 1 month")
+        if ((presenceToCheck == undefined) || (
+            (presenceToCheck != undefined) && (!lessThanTwoMonthAgo(presenceToCheck.tsLastActive)))) {
+            console.log (`User ${aSlackUser.name} <${aSlackUser.email}> : ${presenceToCheck!=undefined?presenceToCheck.tsLastActive:"Unknown"}`)
         }
     }
     console.log ("Total number os users : "+users.length)
