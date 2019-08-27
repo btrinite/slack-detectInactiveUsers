@@ -1,0 +1,34 @@
+{
+    "name": "slackdetectinactiveuser",
+    "description": "Detect inactive users",
+    "version": "0.1.0",
+    "license": "MIT",
+    "main": "src/server.ts",
+    "author": "Benoit Trinité <benoit.trinite@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/btrinite/slack-detectInactiveUsers"
+    },
+    "keywords": [
+        "node",
+        "typescript"
+    ],
+    "engines": {
+        "node": ">= 8.0.0"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start-dev": "NODE_ENV=dev nodemon -r dotenv/config -L --watch dist dist/server.js dotenv_config_path=.env-local",
+        "start-prod": "NODE_ENV=dev nodemon -r dotenv/config -L --watch dist dist/server.js dotenv_config_path=.env"
+    },
+    "dependencies": {
+        "@slack/rtm-api": "^5.0.1",
+        "dotenv": "^7.0.0",
+        "lowdb": "^1.0.0",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3"
+    },
+    "devDependencies": {
+        "@types/node": "^11.13.8"
+    }
+}
