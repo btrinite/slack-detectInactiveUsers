@@ -14,6 +14,8 @@ const FileSync = require('lowdb/adapters/FileSync')
 
 var glob = require("glob")
 
+const options = {}
+
 async function start () {
 
     let users : User[] = await userAPI.getUsers();
@@ -28,7 +30,8 @@ async function start () {
         presence = presence.concat(db.get('usersActivity')
             .value())
     }
-    console.log (presence.length)
+    console.log ("Total number os users : "+users.length)
+    console.log ("Total number of users with presence detected :"+presence.length)
 }
 
 (async () => {
